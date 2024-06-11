@@ -1,0 +1,39 @@
+2024-06-11 14:49:54 - Starting BackendIntcomexApplication using Java 17.0.8 with PID 12660 (C:\Users\Toshiba\Documents\Software engineer\pruebasTecnicas\backendIntcomex\target\classes started by Toshiba in C:\Users\Toshiba\Documents\Software engineer\pruebasTecnicas\backendIntcomex)
+2024-06-11 14:49:54 - No active profile set, falling back to 1 default profile: "default"
+2024-06-11 14:49:55 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-06-11 14:49:55 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-06-11 14:49:57 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-06-11 14:49:57 - Finished Spring Data repository scanning in 132 ms. Found 3 JPA repository interfaces.
+2024-06-11 14:49:57 - Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$SpringCGLIB$$0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [annotationActionEndpointMapping] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2024-06-11 14:49:57 - Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2024-06-11 14:49:58 - Tomcat initialized with port 8080 (http)
+2024-06-11 14:49:58 - Starting service [Tomcat]
+2024-06-11 14:49:58 - Starting Servlet engine: [Apache Tomcat/10.1.24]
+2024-06-11 14:49:58 - Initializing Spring embedded WebApplicationContext
+2024-06-11 14:49:58 - Root WebApplicationContext: initialization completed in 3428 ms
+2024-06-11 14:49:58 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-06-11 14:49:58 - HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-06-11 14:49:58 - HHH000026: Second-level cache disabled
+2024-06-11 14:49:59 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-06-11 14:49:59 - HikariPool-1 - Starting...
+2024-06-11 14:50:01 - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4dc7cb10
+2024-06-11 14:50:01 - HikariPool-1 - Start completed.
+2024-06-11 14:50:01 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-06-11 14:50:02 - HHH000038: Composite-id class does not override equals(): com.intcomex.backendintcomex.model.entities.OrderDetailId
+2024-06-11 14:50:02 - HHH000039: Composite-id class does not override hashCode(): com.intcomex.backendintcomex.model.entities.OrderDetailId
+2024-06-11 14:50:03 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-06-11 14:50:03 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-06-11 14:50:04 - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2024-06-11 14:50:04 - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2024-06-11 14:50:04 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-06-11 14:50:04 - 5 mappings in 'requestMappingHandlerMapping'
+2024-06-11 14:50:05 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2024-06-11 14:50:05 - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2d1bf54a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@d3201b3, org.springframework.security.web.context.SecurityContextHolderFilter@60b811ce, org.springframework.security.web.header.HeaderWriterFilter@65529f2d, org.springframework.web.filter.CorsFilter@64d4a67a, org.springframework.security.web.authentication.logout.LogoutFilter@779dedaf, com.intcomex.backendintcomex.config.JwtAuthenticationFilter@6426b1f9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2a3254c1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@43254a7b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@414c9599, org.springframework.security.web.session.SessionManagementFilter@972307, org.springframework.security.web.access.ExceptionTranslationFilter@3b96cbe7, org.springframework.security.web.access.intercept.AuthorizationFilter@43cc78b2]
+2024-06-11 14:50:05 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-06-11 14:50:05 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-06-11 14:50:05 - LiveReload server is running on port 35729
+2024-06-11 14:50:05 - Tomcat started on port 8080 (http) with context path '/'
+2024-06-11 14:50:05 - Started BackendIntcomexApplication in 12.207 seconds (process running for 13.823)
+2024-06-11 14:50:29 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-06-11 14:50:29 - HikariPool-1 - Shutdown initiated...
+2024-06-11 14:50:30 - HikariPool-1 - Shutdown completed.
