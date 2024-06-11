@@ -1,4 +1,4 @@
-package com.intcomex.backendintcomex.entities;
+package com.intcomex.backendintcomex.model.entities;
 
 import jakarta.persistence.Embeddable;
 
