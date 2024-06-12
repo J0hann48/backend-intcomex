@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
 
 import java.util.Set;
 
@@ -13,17 +14,19 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "categories")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "categoryid")
     private Integer categoryId;
 
-    @Column(nullable = false, length = 15)
+    @Column(name = "categoryname", nullable = false, length = 15)
     private String categoryName;
 
     private String description;
 
-    @Lob
+    @Column(name = "picture", columnDefinition = "bytea")
     private byte[] picture;
 
     @OneToMany(mappedBy = "category")
