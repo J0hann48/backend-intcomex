@@ -1,9 +1,6 @@
 package com.intcomex.backendintcomex.model.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,18 +14,22 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "customers")
 public class Customer {
     @Id
+    @Column(name = "customerid")
     private String customerId;
 
-    @Column(nullable = false, length = 40)
+    @Column(nullable = false, length = 40, name = "companyname")
     private String companyName;
-
+    @Column(name = "contactname")
     private String contactName;
+    @Column(name = "contacttitle")
     private String contactTitle;
     private String address;
     private String city;
     private String region;
+    @Column(name = "postalcode")
     private String postalCode;
     private String country;
     private String phone;

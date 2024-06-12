@@ -13,12 +13,14 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "shippers")
 public class Shipper {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "shipperid")
     private Integer shipperId;
 
-    @Column(nullable = false, length = 40)
+    @Column(nullable = false, length = 40, name = "companyname")
     private String companyName;
 
     private String phone;

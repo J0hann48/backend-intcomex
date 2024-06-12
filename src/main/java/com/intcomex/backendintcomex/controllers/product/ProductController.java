@@ -4,14 +4,14 @@ import com.intcomex.backendintcomex.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.PagedModel;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/products")
@@ -19,24 +19,29 @@ import java.util.stream.Collectors;
 public class ProductController {
 
     private final ProductService productService;
+
     private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
+    private final PagedResourcesAssembler<ProductResponse> pagedResourcesAssembler;
+
+    @GetMapping
+    public ResponseEntity<PagedModel<EntityModel<ProductResponse>>> listProducts(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        Page<ProductResponse> productPage = productService.getAllProducts(page, size);
+        PagedModel<EntityModel<ProductResponse>> pagedModel = pagedResourcesAssembler.toModel(productPage);
+        return ResponseEntity.ok(pagedModel);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductResponse> getProductById(@PathVariable Integer id) {
+        ProductResponse productResponse = productService.getProductById(id);
+        return ResponseEntity.ok(productResponse);
+    }
+
     @PostMapping(value = "/create")
-    public ResponseEntity<ProductResponse> register(@RequestBody CreateProductRequest request) throws IOException {
-        logger.info("Request received for register a category: {}", request);
-        return ResponseEntity.ok(productService.create(request));
+    public ResponseEntity<ProductResponse> register() throws IOException {
+        return ResponseEntity.ok(productService.generateRandomProducts());
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
-        Map<String, String> errors = ex.getBindingResult()
-                .getFieldErrors()
-                .stream()
-                .collect(Collectors.toMap(
-                        error -> error.getField(),
-                        error -> error.getDefaultMessage()
-                ));
-
-        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
-    }
 }

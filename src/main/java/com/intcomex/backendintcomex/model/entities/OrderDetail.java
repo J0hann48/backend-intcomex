@@ -11,20 +11,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "orderdetails")
 public class OrderDetail {
     @EmbeddedId
     private OrderDetailId id;
 
     @ManyToOne
     @MapsId("orderId")
-    @JoinColumn(name = "orderId")
+    @JoinColumn(name = "orderid")
     private Order order;
 
     @ManyToOne
     @MapsId("productId")
-    @JoinColumn(name = "productId")
+    @JoinColumn(name = "productid")
     private Product product;
-
+    @Column(name = "unitprice")
     private Double unitPrice;
     private Short quantity;
     private Float discount;
