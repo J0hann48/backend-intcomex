@@ -6,69 +6,104 @@ Proyecto de prueba en donde se valida una API que crea caterorias, productos y l
 
 El servicio se encuentra deployado en [http://backendintcomex-env-2.eba-gmsay2yb.us-east-1.elasticbeanstalk.com/](http://backendintcomex-env-2.eba-gmsay2yb.us-east-1.elasticbeanstalk.com/)
 
+### Autenticación
+
+La prueba con un sistema de autenticación JWT por lo cual para consumir los endpoints de categoria y productos deben enviar un token
+
+* Register User (POST/api/v1/auth/register) Se debe crear un usuario para el cual se generará un token y se validará en cada consumo. <br><br>
+
+Curl: <br><br>
+<code>curl --location 'http://backendintcomex-env-2.eba-gmsay2yb.us-east-1.elasticbeanstalk.com//api/v1/auth/register' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "name",
+    "email": "name@gmail.com",
+    "password": "soyname"
+}'</code>
+ <br><br>
+
+ Luego de esto se generara un token Bearer el cual debe ser enviado en cada consumo. 
+  
+* Authenticate User (POST/api/v1/auth/authenticate) Existe la posibilidad de logearse con el usuario creado y la contraseña para genearar un nuevo token. <br><br>
+
+Curl
+<br><br>
+
+<code>
+  curl --location 'http://backendintcomex-env-2.eba-gmsay2yb.us-east-1.elasticbeanstalk.com/api/v1/auth/authenticate' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "email": "name@gmail.com",
+    "password": "soyname"
+}'
+</code>
+
+### Categorias
 
 El servicio actualmente cuenta con los siguientes métodos:
 
-* Crear Categoría (POST/Category/) Para crear una categoria, ya se encuentran creadas las categorias CLOUD y SERVIDORES <br><br>
-  La URL del método es [http://backendintcomex-env-2.eba-gmsay2yb.us-east-1.elasticbeanstalk.com/api/v1/categories/register](http://backendintcomex-env-2.eba-gmsay2yb.us-east-1.elasticbeanstalk.com/api/v1/categories/register)
-  Y sus parametros son de tipo RequestParam
-  ````
+* Crear Categoría (POST//api/v1/categories/register) Para crear una categoria, ya se encuentran creadas las categorias CLOUD y SERVIDORES <br><br>
+Curl
+<br><br>
+<code>
   curl --location 'http://backendintcomex-env-2.eba-gmsay2yb.us-east-1.elasticbeanstalk.com/api/v1/categories/register' \
---header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb3NlQGdtYWlsLmNvbSIsImlhdCI6MTcxODE0ODEyMywiZXhwIjoxNzE4MjM0NTIzfQ.PA9SPaWGhnFS85XUTPE4FdvnC9_vN-ND6-aZK1b2PE8' \
+--header 'Authorization: Bearer token' \
 --form 'categoryName="SERVIDORES"' \
 --form 'description="Servidores description"' \
---form 'picture=@"/C:/Users/Toshiba/Pictures/imageServer.jfif"'
+--form 'picture=@"path/imageServer.jfif"'
+</code>
 
-Crear Producto (POST/Product/)
-listar productos (GET/Products/)
-listar productos por ID (GET/Products/id/)
+### Productos
+•	Cumpliendo el punto,
+- Por medio del API Crear Producto, genere datos aleatorios para insertar 100.000 productos asociados a las dos categorías creadas anteriormente.
+<br><br>
+Se genero el siguiente endpoint
+- Crear Producto (POST/api/v1/products/create)
+<br><br>
+<code>
+curl --location --request POST 'http://backendintcomex-env-2.eba-gmsay2yb.us-east-1.elasticbeanstalk.com/api/v1/products/create' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer token' \
+--data ''
+</code>
+<br><br>
 
- 
- * Método POST para enviar una serie de mensajes y distancias a stelites ya conocidos y de esta manera lograr detectar el mensaje y la posiciń exacta de la nave transportadora.<br><br>
-  La URL del método es [Applicationprueba-env.eba-2gcey6ks.us-east-1.elasticbeanstalk.com/meli/api/topsecret/](Applicationprueba-env.eba-2gcey6ks.us-east-1.elasticbeanstalk.com/meli/api/topsecret/)
-Se puede enviar un JSON con la distancias de los satelites y los posibles mensjes receibidos de la nave transportadora mediante un HTTP POST, el JSON pude contenerel siguiente formato:<br><br>
-POST  → /topsecret
-{
-    "satelites": [
-        {
-            "name": "Kenobi",
-            "distance": 100.0,
-            "message": ["este", "", "", "", ""]
-        },
-        {
-            "name": "Skywalker",
-            "distance": 190.0,
-            "message": ["", "es", "un", "", "secreto"]
-        },
-        {
-            "name": "Sato",
-            "distance": 120.0,
-            "message": ["", "es", "", "mensaje", ""]
-        }
-]<br><br>
+•	Cumpliendo el punto,
+•	Por medio del api de listar productos, liste los 100.000 productos creados anteriormente, esta opción deberá poder paginarse y por medio de parámetros decidir cuantos productos se mostraran.
 
-En caso de enviar dicho request el código de respuesta será un HTTP 200-OK, en caso contrario un
-404-NOT-FOUND<br><br>
-* Método POST para enviar la distancia y el posible mensaje a desencriptar para un solo satelite
-La URL del método es [Applicationprueba-env.eba-2gcey6ks.us-east-1.elasticbeanstalk.com/meli/api/topsecret/topsecret_split/skywalker](Applicationprueba-env.eba-2gcey6ks.us-east-1.elasticbeanstalk.com/meli/api/topsecret/topsecret_split/{nameSatelite})<br><br>
-Se puede enviar un JSON con la distancia del satelite y el posible mensaje recibido de la nave transportadora mediante un HTTP POST, el JSON pude contenerel siguiente formato:<br><br>
-POST  → /topsecret_split{nameSatelite}
-{
-    "distance": 199.0,
-    "message": ["", "es", "", "", "secreto"]
-}<br><br>
+- Se genero el siguiente endpoint
+- listar productos (GET/api/v1/products)
+<br><br>
+Curl
+<br><br>
+<code>
+curl --location 'http://backendintcomex-env-2.eba-gmsay2yb.us-east-1.elasticbeanstalk.com/api/v1/products?page=0&size=20' \
+--header 'Authorization: Bearer token'
+</code>
+<br><br>
 
-En caso de enviar dicho request el código de respuesta será un HTTP 404-NOT-FOUND, ya que se deben enviar los tres satelites para así calcular la posición de la nave transportadora, en caso de enviar los tres satelites el código de respuesta será un 200-OK<br><br>
+•	Cumpliendo el punto,
+•	Por ultimo el endpoint de listar productos, podrá buscar un producto de la DB y traer la foto de la categoría a la que corresponde.
+- Se genero el siguiente endpoint
+- listar productos por ID (GET/api/v1/products/id)
 
+<br><br>
+Curl
+<br><br>
+<code>
+curl --location 'http://backendintcomex-env-2.eba-gmsay2yb.us-east-1.elasticbeanstalk.com/api/v1/products/3' \
+--header 'Authorization: Bearer token'
+</code>
+<br><br>
 Se puede probar utilizando [Postman](https://www.getpostman.com/).
 
 ## Environment
 ### Pre-requisitos 📋
 
-* [Java11](https://www.oracle.com/co/java/technologies/javase-jdk11-downloads.html)
+* [Java17](https://www.oracle.com/co/java/technologies/javase-jdk17-downloads.html)
 * IDE: [IntelliJ IDEA](https://www.jetbrains.com/idea/)
 * [Maven](https://maven.apache.org/)
-* [JUnit 4](https://junit.org/junit4/)
+* [JUnit 4](https://junit.org/junit5/)
 
 
 ## Descarga del código fuente
@@ -83,7 +118,7 @@ Se puede probar utilizando [Postman](https://www.getpostman.com/).
    * Abra su consola y posicionese en la carpeta previamente creada<br>
    * Ejecute el comando<br>
    
-    git clone [https://github.com/J0hann48/fuegoDeQuasarMeli.git](https://github.com/J0hann48/backend-intcomex.git)
+    git clone https://github.com/J0hann48/backend-intcomex.git
    
    Luego de que termine la descarga, usted tendrá clonado el branch master en la carpeta previamente creada.
 
