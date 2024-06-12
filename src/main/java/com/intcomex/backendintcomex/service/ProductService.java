@@ -33,7 +33,7 @@ public class ProductService {
 
         Random random = new Random();
 
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 2000; i++) {
             Category category = random.nextBoolean() ? cloudCategory : serversCategory;
 
             Product product = Product.builder()
