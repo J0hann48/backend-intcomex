@@ -97,6 +97,11 @@ curl --location 'http://backendintcomex-env-2.eba-gmsay2yb.us-east-1.elasticbean
 <br><br>
 Se puede probar utilizando [Postman](https://www.getpostman.com/).
 
+## Swagger
+- Se puede consultar la documentación de la API por medio de swagger con el siguiente link.
+
+* [Swagger AWS](http://backendintcomex-env-2.eba-gmsay2yb.us-east-1.elasticbeanstalk.com/swagger-ui/index.html)
+
 ## Environment
 ### Pre-requisitos 📋
 
